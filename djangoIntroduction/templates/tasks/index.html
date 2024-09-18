@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Todos</h1>
+    
+    <form method="get" action="/">
+        <label for="title_filter"></label><input type="text" id="title_filter" name="title_filter" value="{{ title_filter }}" placeholder="Search">
+        <button id="submit" type="submit">Search</button>
+    </form>
+    
+    <ul>
+        {% if tasks %}
+            <p>You have {{ tasks|length }} tasks:</p>
+            {% for task in tasks %}
+                <li>{{ task.name }} - {{ task.created_at }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No result</li>
+        {% endif %}
+    </ul>
+
+</body>
+</html>
