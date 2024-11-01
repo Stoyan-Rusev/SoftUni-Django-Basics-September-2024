@@ -1,0 +1,31 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <!-- Dashboard page -->
+        {% if posts %}
+            <h2>Published Posts</h2>
+        {% else %}
+            <h2>No published posts yet.</h2>
+        {% endif %}
+
+        <section id="dashboard">
+            {% for post in posts %}
+                <div class="post">
+                    <!-- post image -->
+                    <img
+                            src="{{ post.image_url }}"
+                            alt="{{ post.title }}"
+                    />
+                    <!-- post title -->
+                    <h3 class="title">{{ post.title }}</h3>
+                    <!-- post content -->
+                    <p class="description">{{ post.content }}</p>
+                    <!-- post details button -->
+                    <a class="details-btn" href="{% url 'details-post' post.pk %}">See More</a>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
+{% endblock %}
