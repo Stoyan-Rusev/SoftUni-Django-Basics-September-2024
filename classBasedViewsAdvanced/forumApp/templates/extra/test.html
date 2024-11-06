@@ -1,0 +1,39 @@
+{% extends 'common/base.html' %}
+{% load odd_nums %}
+{% load current_time %}
+{% load user %}
+{% load uppercase %}
+
+{% block content %}
+{#    custom inclusion tag: (returns context, rendered in HTML file)    #}
+        {% user_name %}
+    
+{#    custom simple tag: (returns string)    #}
+    <p class="current-time">
+        Last refresh: {% time %}
+    </p>
+    
+    
+{#    custom filter:    #}
+    <p>
+        {{ num_list|odd }}
+    </p>
+{#    block scope filter:    #}
+    {% uppercase %}
+        <p>hello user</p>
+    {% enduppercase %}
+{#----------------------------------------------------------------#}
+    <form action="{% url 'test' %}" method="post">
+        {% csrf_token %}
+        {{ test_form }}
+        {{ test_form.errors }}
+        <button>Test</button>
+    </form>
+    
+    <form action="{% url 'test' %}" method="post">
+        {% csrf_token %}
+        {{ factory }}
+        <button>Test</button>
+    </form>
+{% endblock %}
+
